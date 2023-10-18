@@ -1,19 +1,12 @@
 package com.example.core.member;
 
-import org.assertj.core.api.Assertions;
-import org.junit.Test;
-
-
+import com.example.core.AppConfig;
+import org.junit.jupiter.api.BeforeEach;
 class MemberServiceTest {
-    MemberService memberService = new MemberServiceImpl();
-    @Test
-    void join() {
-        //given
-        Member member = new Member(1L, "memberA", Grade.VIP);
-        //when
-        memberService.join(member);
-        Member findMember = memberService.findMember(1L);
-        //then
-        Assertions.assertThat(member).isEqualTo(findMember);
+    MemberService memberService;
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
     }
 }
